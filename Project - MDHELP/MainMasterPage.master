@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MainMasterPage.master.cs" Inherits="MainMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>MDH.elp</title>
+    <link rel="stylesheet" type="text/css" href="~/Style.css" media="screen" runat="server"/>
+    <meta charset="UTF-8"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="container">
+
+        <asp:ScriptManager ID="MainScriptManager" runat="server" ></asp:ScriptManager>
+
+            <!-- CONTENT IN TOP -->
+            <div class="header">
+                <a href="Default.aspx">
+                    <img src="img/logoTEMP.jpg" id="MdhPicture" /></a>
+               
+                <img src="img/mentor02.png" id="MentorPicture2" />
+                <!--<img src="img/mentor02.png" id="MentorPicture2" />-->
+
+                <asp:Timer ID="TaskBarUpdateTimer" runat="server" Interval="1000" ></asp:Timer>
+                <asp:UpdatePanel ID="TaskBarUpdatePanel" runat="server" UpdateMode="Conditional"><ContentTemplate>
+                <ul class="TaskBar">
+                    <li><a runat="server" id="TopBarMessageButton" href="Messages.aspx">Messages</a></li> 
+				    <li><a href="BrowseMentor.aspx">Find Mentor</a></li>
+				    <li><a href="Settings.aspx">Settings</a></li> 
+                    <asp:Button runat="server" ID="SignOutButton" CssClass="TopPart" Text="Sign Out" OnClick="SignOutButton_Click"/>
+                </ul>
+                </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="TaskBarUpdateTimer" EventName="Tick" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- CONTENT IN MAIN -->
+            <div class="main">
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+                    
+                    
+                </asp:ContentPlaceHolder>
+
+            </div>
+
+
+            <!-- CONTENT IN FOOTER -->
+            <div class="footer">
+                <p>@Copyright MDH.elp (E. Weilander, F. Danielsson, J. Major, L. Sens Ingels & V. Bergman) 2017</p>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
